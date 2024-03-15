@@ -90,6 +90,7 @@ main > #new-book-btn {
 
     display: grid;
     grid-template-columns: repeat(3, minmax(250px, 400px));
+    grid-auto-rows: 10rem;
     gap: 15px;
 }
 
@@ -105,6 +106,26 @@ main > #new-book-btn {
 .book-icon {
     background-color: bisque;
     font-size: 3rem;
+}
+
+.book-title::before {
+    content: "Title: ";
+}
+
+.book-author::before {
+    content: "Author: ";
+}
+
+.book-year::before {
+    content: "Year: ";
+}
+
+.book-pages::before {
+    content: "Pages: ";
+}
+
+.book-status::before {
+    content: "Read? ";
 }
 
 /* ======================== FOOTER ======================== */
