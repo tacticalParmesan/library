@@ -59,7 +59,7 @@ header > nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 nav > ul {

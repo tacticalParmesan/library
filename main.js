@@ -8,14 +8,15 @@ function Book(title, author, yearOfPublication, pages, readStatus) {
 	this.status = readStatus;
 }
 
-/* ================= User Interface ================ */ 
+/* ================= User Interface ================ */
 
 const uiElements = {
 	newBookButton: document.querySelector("#new-book-btn"),
 	addBookModal: document.querySelector("dialog"),
-	submitBookButton : document.querySelector("input[type=submit]"),
+	submitBookButton: document.querySelector("input[type=submit]"),
 	closeModalButton: document.querySelector("#close-modal-btn"),
 	libraryDisplay: document.querySelector(".books-container"),
+	libraryDisplayList: document.querySelectorAll
 };
 
 const newBookElements = {
@@ -23,8 +24,8 @@ const newBookElements = {
 	author: document.querySelector("input[id=author]"),
 	year: document.querySelector("input[id=year]"),
 	pages: document.querySelector("input[id=pages]"),
-	status: document.querySelector("input[id=status]")
-}
+	status: document.querySelector("input[id=status]"),
+};
 
 function loadUIEventListeners() {
 	uiElements.newBookButton.addEventListener("click", () => {
@@ -33,12 +34,15 @@ function loadUIEventListeners() {
 
 	uiElements.closeModalButton.addEventListener("click", () => {
 		uiElements.addBookModal.close();
+		resetFormValues();
 	});
 
 	uiElements.submitBookButton.addEventListener("click", (clickEvent) => {
 		clickEvent.preventDefault();
-		addtoLibrary()
-	})
+		uiElements.addBookModal.close();
+		addtoLibrary();
+		resetFormValues();
+	});
 }
 
 // Card creation process
@@ -46,11 +50,16 @@ function loadUIEventListeners() {
 function updateLibraryUI(libraryArray) {
 	for (let i = 0; i < libraryArray.length; i++) {
 		const bookIndex = i;
-		createBookCard(libraryArray[i], bookIndex);
+
+		// Append a new card to the display only if the book is a new one
+		if (bookIndex >= libraryArray.length - 1) {
+			createBookCard(libraryArray[i], bookIndex);
+		}
 	}
 }
 
 function createBookCard(bookObject, bookIndex) {
+
 	const newBookCard = document.createElement("div");
 	newBookCard.classList.add("book-item");
 	newBookCard.setAttribute("data-index", bookIndex);
@@ -87,7 +96,7 @@ function createBookCard(bookObject, bookIndex) {
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadUIEventListeners();
-})
+});
 
 function addtoLibrary() {
 	const newBook = new Book(
@@ -95,10 +104,14 @@ function addtoLibrary() {
 		newBookElements.author.value,
 		newBookElements.year.value,
 		newBookElements.pages.value,
-		newBookElements.status.value,
-		)
+		newBookElements.status.value
+	);
 	myLibrary.push(newBook);
-	updateLibraryUI(myLibrary)
+	updateLibraryUI(myLibrary);
 }
 
-
+function resetFormValues() {
+	for (const field in newBookElements) {
+		newBookElements[field].value = null;
+	}
+}
