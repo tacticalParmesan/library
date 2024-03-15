@@ -4,34 +4,66 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
-		<script src="index.js" defer></script>
+		<script type="module" src="main.js" defer></script>
+		<script type="module" src="ui.js" defer></script>
 		<title>Library Project | tacticalParmesan</title>
 	</head>
 	<body>
-		<header>
-			<h2>Library Project</h2>
-			<nav>
-				<ul id="links">
-					<li><a href="#">Library</a></li>
-					<li><a href="#">Community</a></li>
-					<li><a href="#">Donate</a></li>
-				</ul>
-				<ul id="icons">
-					<li>🔔</li>
-					<li>🌙</li>
-					<li>TP</li>
-				</ul>
-			</nav>
-		</header>
-		<main>
-			<button id="new-book-btn">New Book</button>
-			<div class="books-container">
-			</div>
-		</main>
-		<footer>
-			Library project by Edoardo Ferreri (tacticalParmesan).
-			<br>
-			The Odin Project
-		</footer>
+		<div class="grid-container">
+			<header>
+				<h2>Library Project</h2>
+				<nav>
+					<ul id="links">
+						<li><a href="#">Library</a></li>
+						<li><a href="#">Community</a></li>
+						<li><a href="#">Donate</a></li>
+					</ul>
+					<ul id="icons">
+						<li>🔔</li>
+						<li>🌙</li>
+						<li>TP</li>
+					</ul>
+				</nav>
+			</header>
+			<main>
+				<button id="new-book-btn">New Book</button>
+				<div class="books-container">
+					<div class="book-item" data-index="0">
+						<div class="book-icon">📙</div>
+						<div class="book-data">
+							<div class="book-title">Title: Dune</div>
+							<div class="book-author">Author: Frank Herbert</div>
+							<div class="book-year">Year: 1965</div>
+							<div class="book-status">Read? <input type="checkbox"></div>
+						</div>
+					</div>
+					<div class="book-item" data-index="0">
+						<div class="book-icon">📙</div>
+						<div class="book-data">
+							<div class="book-title">Title: Dune</div>
+							<div class="book-author">Author: Frank Herbert</div>
+							<div class="book-year">Year: 1965</div>
+							<div class="book-status">Read? <input type="checkbox"></div>
+						</div>
+					</div>
+					<div class="book-item" data-index="0">
+						<div class="book-icon">📙</div>
+						<div class="book-data">
+							<div class="book-title">Title: Dune</div>
+							<div class="book-author">Author: Frank Herbert</div>
+							<div class="book-year">Year: 1965</div>
+							<div class="book-status">Read? <input type="checkbox"></div>
+						</div>
+					</div>
+				</div>
+				
+			</main>
+			<footer>
+				<p>
+					Library project by Edoardo Ferreri (tacticalParmesan). <br />
+					The Odin Project <span id="year">2024</span>
+				</p>
+			</footer>
+		</div>
 	</body>
 </html>
