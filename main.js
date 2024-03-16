@@ -5,7 +5,7 @@ function Book(title, author, yearOfPublication, pages, readStatus) {
 	this.author = author;
 	this.year = yearOfPublication;
 	this.pages = pages;
-	this.status = readStatus == "on" ? "Yes" : "To Read";
+	this.status = readStatus == true ? "Yes" : "To Read";
 }
 
 /* ================= User Interface ================ */
@@ -107,14 +107,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function addtoLibrary() {
+	const isRead = (newBookElements.status.checked) ? true : false;
 	const newBook = new Book(
 		newBookElements.title.value,
 		newBookElements.author.value,
 		newBookElements.year.value,
 		newBookElements.pages.value,
-		newBookElements.status.value
+		isRead
 	);
 	myLibrary.push(newBook);
+	console.log(newBookElements.status)
 	updateLibraryUI(myLibrary);
 }
 
