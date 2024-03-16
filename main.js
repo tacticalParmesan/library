@@ -13,7 +13,7 @@ function Book(title, author, yearOfPublication, pages, readStatus) {
 const uiElements = {
 	newBookButton: document.querySelector("#new-book-btn"),
 	addBookModal: document.querySelector("dialog"),
-	submitBookButton: document.querySelector("input[type=submit]"),
+	submitBookButton: document.querySelector("button[type=submit]"),
 	closeModalButton: document.querySelector("#close-modal-btn"),
 	libraryDisplay: document.querySelector(".books-container"),
 	libraryDisplayList: document.querySelectorAll
@@ -48,14 +48,14 @@ function loadUIEventListeners() {
 // Card creation process
 
 function updateLibraryUI(libraryArray) {
+
+	removeAllCards(uiElements.libraryDisplay)
+
 	for (let i = 0; i < libraryArray.length; i++) {
 		const bookIndex = i;
-
-		// Append a new card to the display only if the book is a new one
-		if (bookIndex >= libraryArray.length - 1) {
-			createBookCard(libraryArray[i], bookIndex);
-		}
+		createBookCard(libraryArray[i], bookIndex);
 	}
+
 }
 
 function createBookCard(bookObject, bookIndex) {
@@ -81,15 +81,28 @@ function createBookCard(bookObject, bookIndex) {
 		} else {
 			const readCheckbox = document.createElement("input");
 			readCheckbox.setAttribute("type", "checkbox");
+
+			if (bookObject["status"] === "on") readCheckbox.checked = true;
 			bookProperty.appendChild(readCheckbox);
 		}
 
 		newBookData.appendChild(bookProperty);
 	}
 
+	const deleteBookButton = document.createElement("button")
+	deleteBookButton.classList.add("delete-book-btn")
+	deleteBookButton.addEventListener("click", () => removeBook(bookIndex))
+
 	newBookCard.appendChild(newBookData);
+	newBookCard.appendChild(deleteBookButton);
 
 	uiElements.libraryDisplay.appendChild(newBookCard);
+}
+
+function removeAllCards(parentNode) {
+	while(parentNode.firstChild) {
+		parentNode.removeChild(parentNode.firstChild)
+	}
 }
 
 /* =============== Data Managment and Library Logic ============== */
@@ -108,6 +121,11 @@ function addtoLibrary() {
 	);
 	myLibrary.push(newBook);
 	updateLibraryUI(myLibrary);
+}
+
+function removeBook(bookIndex) {
+	myLibrary.splice(bookIndex, 1)
+	updateLibraryUI(myLibrary)
 }
 
 function resetFormValues() {

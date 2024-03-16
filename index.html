@@ -34,12 +34,14 @@
 							<label for="title">Title:</label>
 							<input type="text" id="title" required />
 						</div>
+
 						<div class="form-row">
-							<label for="author">Author:</label>
-							<input type="text" id="author" required />
+							<label for="author">Author: </label>
+							<input type="text" id="author" required>
 						</div>
+
 						<div class="form-row">
-							<label for="title">Year:</label>
+							<label for="year">Year: </label>
 							<input
 								type="number"
 								id="year"
@@ -50,17 +52,20 @@
 						</div>
 
 						<div class="form-row">
-							<label for="pages">Pages:</label>
+							<label for="pages">Pages: </label>
 							<input type="number" id="pages" required />
 						</div>
 
 						<div class="form-row">
-							<label for="title">Read? </label>
+							<label for="status"> Read? </label>
 							<input type="checkbox" id="status" required />
 						</div>
-						<div class="form-row">
-							<input type="submit" value="Add Book" />
-							<button autofocus id="close-modal-btn" formnovalidate>Close</button>
+
+						<div class="buttons-row">
+							<button type="submit">Add Book</button>
+							<button autofocus id="close-modal-btn" formnovalidate>
+								Close
+							</button>
 						</div>
 					</form>
 				</dialog>
