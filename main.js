@@ -5,7 +5,7 @@ function Book(title, author, yearOfPublication, pages, readStatus) {
 	this.author = author;
 	this.year = yearOfPublication;
 	this.pages = pages;
-	this.status = readStatus;
+	this.status = readStatus == "on" ? "Yes" : "To Read";
 }
 
 /* ================= User Interface ================ */
@@ -16,7 +16,7 @@ const uiElements = {
 	submitBookButton: document.querySelector("button[type=submit]"),
 	closeModalButton: document.querySelector("#close-modal-btn"),
 	libraryDisplay: document.querySelector(".books-container"),
-	libraryDisplayList: document.querySelectorAll
+	libraryDisplayList: document.querySelectorAll,
 };
 
 const newBookElements = {
@@ -48,18 +48,15 @@ function loadUIEventListeners() {
 // Card creation process
 
 function updateLibraryUI(libraryArray) {
-
-	removeAllCards(uiElements.libraryDisplay)
+	removeAllCards(uiElements.libraryDisplay);
 
 	for (let i = 0; i < libraryArray.length; i++) {
 		const bookIndex = i;
 		createBookCard(libraryArray[i], bookIndex);
 	}
-
 }
 
 function createBookCard(bookObject, bookIndex) {
-
 	const newBookCard = document.createElement("div");
 	newBookCard.classList.add("book-item");
 	newBookCard.setAttribute("data-index", bookIndex);
@@ -75,33 +72,31 @@ function createBookCard(bookObject, bookIndex) {
 	for (const key in bookObject) {
 		const bookProperty = document.createElement("div");
 		bookProperty.classList.add(`book-${String(key)}`);
-
-		if (bookProperty.classList[0] !== "book-status") {
-			bookProperty.textContent = bookObject[key];
-		} else {
-			const readCheckbox = document.createElement("input");
-			readCheckbox.setAttribute("type", "checkbox");
-
-			if (bookObject["status"] === "on") readCheckbox.checked = true;
-			bookProperty.appendChild(readCheckbox);
-		}
-
+		bookProperty.textContent = bookObject[key];
 		newBookData.appendChild(bookProperty);
 	}
 
-	const deleteBookButton = document.createElement("button")
-	deleteBookButton.classList.add("delete-book-btn")
-	deleteBookButton.addEventListener("click", () => removeBook(bookIndex))
+	const deleteBookButton = document.createElement("button");
+	deleteBookButton.classList.add("delete-book-btn");
+	deleteBookButton.textContent = "Delete";
+	deleteBookButton.addEventListener("click", () => removeBook(bookIndex));
+
+	const changeReadStatusButton = document.createElement("button");
+	changeReadStatusButton.classList.add("mark-read-btn");
+	changeReadStatusButton.textContent = "Read?";
+	changeReadStatusButton.addEventListener("click", () =>
+		changeReadStatus(bookIndex)
+	);
 
 	newBookCard.appendChild(newBookData);
 	newBookCard.appendChild(deleteBookButton);
-
+	newBookCard.appendChild(changeReadStatusButton);
 	uiElements.libraryDisplay.appendChild(newBookCard);
 }
 
 function removeAllCards(parentNode) {
-	while(parentNode.firstChild) {
-		parentNode.removeChild(parentNode.firstChild)
+	while (parentNode.firstChild) {
+		parentNode.removeChild(parentNode.firstChild);
 	}
 }
 
@@ -124,8 +119,20 @@ function addtoLibrary() {
 }
 
 function removeBook(bookIndex) {
-	myLibrary.splice(bookIndex, 1)
-	updateLibraryUI(myLibrary)
+	myLibrary.splice(bookIndex, 1);
+	updateLibraryUI(myLibrary);
+}
+
+function changeReadStatus(bookIndex) {
+
+	if (myLibrary[bookIndex].status == "Yes")
+		myLibrary[bookIndex].status = "To Read";
+	else if (myLibrary[bookIndex].status == "To Read")
+		myLibrary[bookIndex].status = "Yes";
+
+	const bookToUpdate = document.querySelector(`div[data-index="${bookIndex}"]`);
+	const readStatus = bookToUpdate.querySelector(".book-status");
+	readStatus.textContent = myLibrary[bookIndex].status;
 }
 
 function resetFormValues() {

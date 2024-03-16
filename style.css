@@ -98,7 +98,7 @@ main > #new-book-btn {
     padding: 1rem;
 
     display: grid;
-    grid-template: 1fr / 1fr 3fr;
+    grid-template: 1fr 3fr / 1fr 3fr;
     gap: 15px;
 }
 
@@ -131,7 +131,16 @@ main > #new-book-btn {
     grid-column: 2 / 3;
 }
 
+.mark-read-btn {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
 /* ======================== ADD BOOK MODAL ======================== */
+
+dialog {
+    transition: ease-in 1s;
+}
 
 dialog[open] {
     display: flex;
