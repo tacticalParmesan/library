@@ -152,6 +152,7 @@ main > #new-book-btn {
 
 span.book-icon {
 	font-size: 3.5rem;
+	font-weight: 700;
 	text-align: center;
 }
 

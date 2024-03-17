@@ -1,11 +1,12 @@
 const myLibrary = [];
 
-function Book(title, author, yearOfPublication, pages, readStatus) {
+function Book(title, author, yearOfPublication, pages, readStatus, iconColor) {
 	this.title = title;
 	this.author = author;
 	this.year = yearOfPublication;
 	this.pages = pages;
 	this.status = readStatus == true ? "Yes" : "To Read";
+	this.iconColor = iconColor;
 }
 
 /* ================= User Interface ================ */
@@ -15,6 +16,7 @@ const uiElements = {
 	addBookModal: document.querySelector("dialog"),
 	addBookForm: document.querySelector("form"),
 	closeModalButton: document.querySelector("#close-modal-btn"),
+	bookIconModal: document.querySelector(".book-creation"),
 	libraryDisplay: document.querySelector(".books-container"),
 	libraryDisplayList: document.querySelectorAll,
 };
@@ -25,6 +27,7 @@ const newBookElements = {
 	year: document.querySelector("input[id=year]"),
 	pages: document.querySelector("input[id=pages]"),
 	status: document.querySelector("input[id=status]"),
+	iconColor: document.querySelector("input[id=color]"),
 };
 
 function loadUIEventListeners() {
@@ -42,7 +45,12 @@ function loadUIEventListeners() {
 		uiElements.addBookModal.close();
 		addtoLibrary();
 		resetFormValues();
-	})
+	});
+
+	newBookElements.iconColor.addEventListener("input", () => {
+		uiElements.bookIconModal.style.color = newBookElements.iconColor.value;
+		console.log(newBookElements.iconColor.value)
+	});
 }
 
 // Card creation process
@@ -64,6 +72,7 @@ function createBookCard(bookObject, bookIndex) {
 	const newBookIcon = document.createElement("span");
 	newBookIcon.classList.add("material-symbols-outlined", "book-icon");
 	newBookIcon.textContent = "book";
+	newBookIcon.style.color = bookObject.iconColor;
 	newBookCard.appendChild(newBookIcon);
 
 	const newBookData = document.createElement("div");
@@ -72,7 +81,9 @@ function createBookCard(bookObject, bookIndex) {
 	for (const key in bookObject) {
 		const bookProperty = document.createElement("div");
 		bookProperty.classList.add(`book-${String(key)}`);
-		bookProperty.textContent = bookObject[key];
+
+		if (bookProperty.classList[0] !== "book-iconColor")
+			bookProperty.textContent = bookObject[key];
 
 		if (bookProperty.textContent.length > 20) {
 			bookProperty.style.fontSize = "1rem";
@@ -117,6 +128,8 @@ function removeAllCards(parentNode) {
 	}
 }
 
+function updateModalBookIcon() {}
+
 /* =============== Data Managment and Library Logic ============== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -130,7 +143,8 @@ function addtoLibrary() {
 		newBookElements.author.value,
 		newBookElements.year.value,
 		newBookElements.pages.value,
-		isRead
+		isRead,
+		newBookElements.iconColor.value
 	);
 	myLibrary.push(newBook);
 	console.log(newBookElements.status);
@@ -149,11 +163,9 @@ function changeReadStatus(bookIndex) {
 	if (myLibrary[bookIndex].status == "Yes") {
 		myLibrary[bookIndex].status = "To Read";
 		readStatus.classList.replace("read", "to-read");
-	}
-		
-	else if (myLibrary[bookIndex].status == "To Read") {
+	} else if (myLibrary[bookIndex].status == "To Read") {
 		myLibrary[bookIndex].status = "Yes";
-		readStatus.classList.replace("to-read", "read")
+		readStatus.classList.replace("to-read", "read");
 	}
 
 	readStatus.textContent = myLibrary[bookIndex].status;
@@ -166,7 +178,7 @@ function resetFormValues() {
 }
 
 function _displayPlaceholdes() {
-	const dune = new Book("Dune", "Frank Herbert", 1965, 865, false);
+	const dune = new Book("Dune", "Frank Herbert", 1965, 865, false, "#b85851");
 
 	const _1984 = new Book("1984", "George Orwell", 1948, 274, true);
 	myLibrary.push(dune, _1984);
