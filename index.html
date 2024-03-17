@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 		<script type="module" src="main.js" defer></script>
 		<title>Library Project | tacticalParmesan</title>
 	</head>
@@ -18,9 +19,9 @@
 						<li><a href="#">Donate</a></li>
 					</ul>
 					<ul id="icons">
-						<li>🔔</li>
-						<li>🌙</li>
-						<li>TP</li>
+						<li><span class="material-symbols-outlined bell">notifications</span></li>
+						<li><span class="material-symbols-outlined dark">contrast</span></li>
+						<li><span class="material-symbols-outlined user">person</span></li>
 					</ul>
 				</nav>
 			</header>
@@ -29,15 +30,22 @@
 				<!-- Modal for adding new books -->
 				<dialog>
 					<p>Add a new book to the library!</p>
+					<div class="icon-creation-tab">
+						<div class="material-symbols-outlined book-creation">
+							book
+						</div>
+						<label for="color-picker">Choose a color:</label>
+						<input type="color" name="" id="color-picker">
+					</div>
 					<form method="dialog">
 						<div class="form-row">
 							<label for="title">Title:</label>
-							<input type="text" id="title" required />
+							<input type="text" id="title" required/>
 						</div>
 
 						<div class="form-row">
 							<label for="author">Author: </label>
-							<input type="text" id="author" required>
+							<input type="text" id="author" required/>
 						</div>
 
 						<div class="form-row">
@@ -62,14 +70,15 @@
 						</div>
 
 						<div class="buttons-row">
-							<button type="submit">Add Book</button>
-							<button autofocus id="close-modal-btn" formnovalidate>
+							<input type="submit" value="Add Book">
+							<button autofocus id="close-modal-btn">
 								Close
 							</button>
 						</div>
 					</form>
 				</dialog>
-				<div class="books-container"></div>
+				<div class="books-container">
+				</div>
 			</main>
 			<footer>
 				<p>

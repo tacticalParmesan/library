@@ -13,7 +13,7 @@ function Book(title, author, yearOfPublication, pages, readStatus) {
 const uiElements = {
 	newBookButton: document.querySelector("#new-book-btn"),
 	addBookModal: document.querySelector("dialog"),
-	submitBookButton: document.querySelector("button[type=submit]"),
+	addBookForm: document.querySelector("form"),
 	closeModalButton: document.querySelector("#close-modal-btn"),
 	libraryDisplay: document.querySelector(".books-container"),
 	libraryDisplayList: document.querySelectorAll,
@@ -37,12 +37,12 @@ function loadUIEventListeners() {
 		resetFormValues();
 	});
 
-	uiElements.submitBookButton.addEventListener("click", (clickEvent) => {
-		clickEvent.preventDefault();
+	uiElements.addBookForm.addEventListener("submit", (ev) => {
+		ev.preventDefault();
 		uiElements.addBookModal.close();
 		addtoLibrary();
 		resetFormValues();
-	});
+	})
 }
 
 // Card creation process
@@ -61,9 +61,9 @@ function createBookCard(bookObject, bookIndex) {
 	newBookCard.classList.add("book-item");
 	newBookCard.setAttribute("data-index", bookIndex);
 
-	const newBookIcon = document.createElement("div");
-	newBookIcon.classList.add("book-icon");
-	newBookIcon.textContent = "📙";
+	const newBookIcon = document.createElement("span");
+	newBookIcon.classList.add("material-symbols-outlined", "book-icon");
+	newBookIcon.textContent = "book";
 	newBookCard.appendChild(newBookIcon);
 
 	const newBookData = document.createElement("div");
@@ -74,8 +74,16 @@ function createBookCard(bookObject, bookIndex) {
 		bookProperty.classList.add(`book-${String(key)}`);
 		bookProperty.textContent = bookObject[key];
 
-		if(bookProperty.textContent.length > 20) {
-			bookProperty.style.fontSize = "1rem"
+		if (bookProperty.textContent.length > 20) {
+			bookProperty.style.fontSize = "1rem";
+		}
+
+		if (bookProperty.classList[0] === "book-status") {
+			if (bookProperty.textContent === "Yes") {
+				bookProperty.classList.add("read");
+			} else if (bookProperty.textContent === "To Read") {
+				bookProperty.classList.add("to-read");
+			}
 		}
 
 		newBookData.appendChild(bookProperty);
@@ -135,13 +143,19 @@ function removeBook(bookIndex) {
 }
 
 function changeReadStatus(bookIndex) {
-	if (myLibrary[bookIndex].status == "Yes")
-		myLibrary[bookIndex].status = "To Read";
-	else if (myLibrary[bookIndex].status == "To Read")
-		myLibrary[bookIndex].status = "Yes";
-
 	const bookToUpdate = document.querySelector(`div[data-index="${bookIndex}"]`);
 	const readStatus = bookToUpdate.querySelector(".book-status");
+
+	if (myLibrary[bookIndex].status == "Yes") {
+		myLibrary[bookIndex].status = "To Read";
+		readStatus.classList.replace("read", "to-read");
+	}
+		
+	else if (myLibrary[bookIndex].status == "To Read") {
+		myLibrary[bookIndex].status = "Yes";
+		readStatus.classList.replace("to-read", "read")
+	}
+
 	readStatus.textContent = myLibrary[bookIndex].status;
 }
 
@@ -150,3 +164,13 @@ function resetFormValues() {
 		newBookElements[field].value = null;
 	}
 }
+
+function _displayPlaceholdes() {
+	const dune = new Book("Dune", "Frank Herbert", 1965, 865, false);
+
+	const _1984 = new Book("1984", "George Orwell", 1948, 274, true);
+	myLibrary.push(dune, _1984);
+	updateLibraryUI(myLibrary);
+}
+
+_displayPlaceholdes();

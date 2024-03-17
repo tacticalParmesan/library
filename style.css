@@ -46,13 +46,11 @@ header {
 }
 
 main {
-	background-color: ;
 	grid-area: content;
 	min-height: 100%;
 }
 
 footer {
-	background-color: ;
 	grid-area: footer;
 }
 
@@ -92,6 +90,22 @@ nav a {
 
 nav a:hover {
 	border-bottom: 0.3rem solid var(--caribbean-current);
+}
+
+#icons li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+nav #icons li span {
+    color: var(--white);
+}
+
+.user {
+    background-color: var(--burnt-sienna);
+    border-radius: 1.5rem;
+    padding: 0.5rem;
 }
 
 /* ======================== CONTENT ======================== */
@@ -136,8 +150,8 @@ main > #new-book-btn {
 	gap: 15px;
 }
 
-.book-icon {
-	font-size: 3rem;
+span.book-icon {
+	font-size: 3.5rem;
 	text-align: center;
 }
 
@@ -147,6 +161,13 @@ main > #new-book-btn {
 	justify-content: space-between;
 
     font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.book-data {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
 }
 
 .book-title::before {
@@ -167,7 +188,19 @@ main > #new-book-btn {
 }
 
 .book-status::before {
+	color: initial;
+	font-weight:  initial;
 	content: "Read: ";
+}
+
+.book-status.read {
+	font-weight: 600;
+	color: var(--indigo-dye);
+}
+
+.book-status.to-read {
+	font-weight: 600;
+	color: var(--burnt-sienna);
 }
 
 .buttons-container {
@@ -188,19 +221,40 @@ main > #new-book-btn {
 /* ======================== ADD BOOK MODAL ======================== */
 
 dialog {
-	transition: ease-in 1s;
+	border-radius: 2rem;
 }
 
 dialog[open] {
+	display: grid;
+	grid-template: 1fr 5fr / 3fr 5fr;
+	align-items: center;
+	
+}
+
+dialog > p {
+	grid-area: 1 / span 2;
+	text-align: center;
+}
+
+dialog > .icon-creation-tab {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	width: 450px;
+	gap: 1rem;
+}
+
+.icon-creation-tab > input{
+	width: 80%;
+}
+
+.material-symbols-outlined.book-creation {
+	font-size: 6rem;
 }
 
 dialog > form {
 	padding: 1rem;
-	width: 85%;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -216,6 +270,12 @@ form .form-row {
 	align-self: flex-end;
 }
 
+.buttons-row {
+	display: flex;
+	flex-direction: row-reverse;
+	gap: 1rem
+}
+
 /* ======================== FOOTER ======================== */
 
 footer {
@@ -227,7 +287,8 @@ footer {
 
 /* ======================== BUTTONS STYLE ======================== */
 
-button {
+button,
+input[type=submit] {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -241,6 +302,14 @@ button {
 	background-color: var(--caribbean-current);
     border-color: var(--caribbean-current);
 	color: white;
+
+    transition: ease 0.3s;
+}
+
+button:hover,
+input[type=submit]:hover{
+    background-color: var(--white);
+	color: var(--caribbean-current);
 }
 
 button#new-book-btn {
