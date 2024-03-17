@@ -76,6 +76,9 @@ function createBookCard(bookObject, bookIndex) {
 		newBookData.appendChild(bookProperty);
 	}
 
+	const buttonsContainer = document.createElement("div");
+	buttonsContainer.classList.add("buttons-container");
+
 	const deleteBookButton = document.createElement("button");
 	deleteBookButton.classList.add("delete-book-btn");
 	deleteBookButton.textContent = "Delete";
@@ -89,8 +92,9 @@ function createBookCard(bookObject, bookIndex) {
 	);
 
 	newBookCard.appendChild(newBookData);
-	newBookCard.appendChild(deleteBookButton);
-	newBookCard.appendChild(changeReadStatusButton);
+	buttonsContainer.appendChild(deleteBookButton);
+	buttonsContainer.appendChild(changeReadStatusButton);
+	newBookCard.appendChild(buttonsContainer);
 	uiElements.libraryDisplay.appendChild(newBookCard);
 }
 
@@ -107,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function addtoLibrary() {
-	const isRead = (newBookElements.status.checked) ? true : false;
+	const isRead = newBookElements.status.checked ? true : false;
 	const newBook = new Book(
 		newBookElements.title.value,
 		newBookElements.author.value,
@@ -116,7 +120,7 @@ function addtoLibrary() {
 		isRead
 	);
 	myLibrary.push(newBook);
-	console.log(newBookElements.status)
+	console.log(newBookElements.status);
 	updateLibraryUI(myLibrary);
 }
 
@@ -126,7 +130,6 @@ function removeBook(bookIndex) {
 }
 
 function changeReadStatus(bookIndex) {
-
 	if (myLibrary[bookIndex].status == "Yes")
 		myLibrary[bookIndex].status = "To Read";
 	else if (myLibrary[bookIndex].status == "To Read")

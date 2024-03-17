@@ -1,178 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 :root {
-    font-size: 16px;
+	font-size: 16px;
+    font-family: "Roboto", "Helvetica", sans-serif;
+    --jet: #353535ff;
+    --caribbean-current: #3c6e71ff;
+    --white: #ffffffff;
+    --platinum: #d9d9d9ff;
+    --indigo-dye: #284b63ff;
+    --burnt-sienna: #ee6c4dff;
 }
 
 * {
-    font-size: inherit;
-    font-family: inherit;
-    list-style: none;
-    text-decoration: none;
-    color: black;
-    box-sizing: border-box;
+	font-size: inherit;
+	font-family: inherit;
+	list-style: none;
+	text-decoration: none;
+	color: black;
+	box-sizing: border-box;
 }
 
-/* Page Layout */
+/* ======================== PAGE LAYOUT ======================== */
 
 body {
-    min-height: 100vh;
-    margin: 0px;
+	min-height: 100vh;
+	margin: 0px;
+    background-color: rgba(255, 255, 255, 0.871);
 }
 
 .grid-container {
-    min-height: inherit;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 3rem 1fr 3rem;
-    grid-template-areas: 
-    "header"
-    "content"
-    "footer";
+	min-height: inherit;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 3.5rem 1fr 3rem;
+	grid-template-areas:
+		"header"
+		"content"
+		"footer";
 }
 
 header {
-    background-color: aquamarine;
-    grid-area: header;
+	background-color: var(--indigo-dye);
+	grid-area: header;
 }
 
 main {
-    background-color: blanchedalmond;
-    grid-area: content;
-    min-height: 100%;
+	background-color: ;
+	grid-area: content;
+	min-height: 100%;
 }
 
 footer {
-    background-color: slategray;
-    grid-area: footer;
+	background-color: ;
+	grid-area: footer;
 }
 
 /* ======================== HEADER ======================== */
 
 header {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+header > h2 {
+    font-family: Pacifico;
+    font-size: 1.5rem;
+    color: var(--white)
 }
 
 header > nav {
-    min-width: 75%;
+	min-width: 75%;
 
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 1rem;
 }
 
 nav > ul {
-    display: flex;
-    gap: 1rem
+	display: flex;
+	gap: 1.5rem;
+}
+
+nav a {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+} 
+
+nav a:hover {
+    border-bottom: 0.3rem solid var(--caribbean-current);
 }
 
 /* ======================== CONTENT ======================== */
 
 main {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 main > #new-book-btn {
-    height: 2rem;
-    width: 10rem;
+	height: 2rem;
+	width: 10rem;
 }
 
 /* ======================== BOOK CARD STYLING ======================== */
 
 .books-container {
-    padding: 2rem;
+	padding: 2rem;
 
-    display: grid;
-    grid-template-columns: repeat(3, minmax(250px, 400px));
-    grid-auto-rows: 10rem;
-    gap: 15px;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(250px, 500px));
+	grid-auto-rows: 12rem;
+	gap: 15px;
 }
 
 .book-item {
-    background-color: azure;
-    padding: 1rem;
+	background-color: white;
+    border: 1px solid var(--caribbean-current);
+    border-left: 0.6rem solid var(--caribbean-current);
 
-    display: grid;
-    grid-template: 1fr 3fr / 1fr 3fr;
-    gap: 15px;
+    
+    border-radius: 1.8rem;
+	padding: 2rem;
+
+	display: grid;
+	grid-template: 1fr 3fr / 1fr 3fr;
+    justify-content: center;
+    align-items: center;
+	gap: 15px;
 }
 
 .book-icon {
-    background-color: bisque;
-    font-size: 3rem;
+	font-size: 3rem;
+    text-align: center;
+}
+
+.book-data > * {
+    text-align: end;
+    display: flex;
+    justify-content: space-between;
 }
 
 .book-title::before {
-    content: "Title: ";
+	content: "Title: ";
+    text-align: start;
 }
 
 .book-author::before {
-    content: "Author: ";
+	content: "Author: ";
 }
 
 .book-year::before {
-    content: "Year: ";
+	content: "Year: ";
 }
 
 .book-pages::before {
-    content: "Pages: ";
+	content: "Pages: ";
 }
 
 .book-status::before {
-    content: "Read: ";
+	content: "Read: ";
 }
 
-.delete-book-btn {
+.buttons-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
     grid-column: 2 / 3;
 }
 
+.delete-book-btn {
+    width: 6rem;
+}
+
 .mark-read-btn {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
+    width: 6rem;
 }
 
 /* ======================== ADD BOOK MODAL ======================== */
 
 dialog {
-    transition: ease-in 1s;
+	transition: ease-in 1s;
 }
 
 dialog[open] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 450px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 450px;
 }
 
 dialog > form {
-    padding: 1rem;
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+	padding: 1rem;
+	width: 85%;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 form .form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
 }
 
 .form-row > input {
-    align-self: flex-end;
+	align-self: flex-end;
 }
-
 
 /* ======================== FOOTER ======================== */
 
 footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+/* ======================== BUTTONS STYLE ======================== */
+
+button {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
+
+    font-weight: 700;
+    border: none;
+    border-radius: 0.8rem;
+    padding: 0.6rem;
+    cursor: pointer;
+
+    background-color: var(--caribbean-current);
+    color: white;
+}
+
+button#new-book-btn {
+    padding: 2rem;
+}
+
+button.delete-book-btn {
+    background-color: var(--burnt-sienna);
 }
