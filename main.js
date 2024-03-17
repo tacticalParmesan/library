@@ -175,6 +175,7 @@ function resetFormValues() {
 	for (const field in newBookElements) {
 		newBookElements[field].value = null;
 	}
+	uiElements.bookIconModal.style.color = "black"
 }
 
 function _displayPlaceholdes() {
