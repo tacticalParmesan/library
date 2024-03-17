@@ -73,6 +73,11 @@ function createBookCard(bookObject, bookIndex) {
 		const bookProperty = document.createElement("div");
 		bookProperty.classList.add(`book-${String(key)}`);
 		bookProperty.textContent = bookObject[key];
+
+		if(bookProperty.textContent.length > 20) {
+			bookProperty.style.fontSize = "1rem"
+		}
+
 		newBookData.appendChild(bookProperty);
 	}
 
