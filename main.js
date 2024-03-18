@@ -19,6 +19,12 @@ const uiElements = {
 	bookIconModal: document.querySelector(".book-creation"),
 	libraryDisplay: document.querySelector(".books-container"),
 	libraryDisplayList: document.querySelectorAll,
+	statsPanel: {
+		totalBooks: document.querySelector(".total-books"),
+		readBooks: document.querySelector(".read-books"),
+		percentageRead: document.querySelector(".percentage-read"),
+		totalPages: document.querySelector(".total-pages"),
+	},
 };
 
 const newBookElements = {
@@ -49,7 +55,7 @@ function loadUIEventListeners() {
 
 	newBookElements.iconColor.addEventListener("input", () => {
 		uiElements.bookIconModal.style.color = newBookElements.iconColor.value;
-		console.log(newBookElements.iconColor.value)
+		console.log(newBookElements.iconColor.value);
 	});
 }
 
@@ -62,6 +68,7 @@ function updateLibraryUI(libraryArray) {
 		const bookIndex = i;
 		createBookCard(libraryArray[i], bookIndex);
 	}
+	updateStatisticsPanel();
 }
 
 function createBookCard(bookObject, bookIndex) {
@@ -128,12 +135,26 @@ function removeAllCards(parentNode) {
 	}
 }
 
-function updateModalBookIcon() {}
+function updateStatisticsPanel() {
+	const readBooksArray = myLibrary.filter((book) => book.status == "Yes");
 
-/* =============== Data Managment and Library Logic ============== */
+	let totalPagesRead = 0;
+	for (const book of readBooksArray) {
+		totalPagesRead += +book.pages;
+	}
+
+	uiElements.statsPanel.totalBooks.textContent = myLibrary.length;
+	uiElements.statsPanel.readBooks.textContent = readBooksArray.length;
+	uiElements.statsPanel.percentageRead.textContent =
+		Math.round((readBooksArray.length / myLibrary.length) * 100) + "%";
+	uiElements.statsPanel.totalPages.textContent = totalPagesRead;
+}
+
+/* =============== Data Management and Library Logic ============== */
 
 document.addEventListener("DOMContentLoaded", () => {
 	loadUIEventListeners();
+	updateStatisticsPanel();
 });
 
 function addtoLibrary() {
@@ -169,13 +190,14 @@ function changeReadStatus(bookIndex) {
 	}
 
 	readStatus.textContent = myLibrary[bookIndex].status;
+	updateStatisticsPanel()
 }
 
 function resetFormValues() {
 	for (const field in newBookElements) {
 		newBookElements[field].value = null;
 	}
-	uiElements.bookIconModal.style.color = "black"
+	uiElements.bookIconModal.style.color = "black";
 }
 
 function _displayPlaceholdes() {
