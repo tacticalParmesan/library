@@ -118,9 +118,5 @@ button#new-book-btn {
 	main {
 		width: 100vw;
 	}
-	.books-container {
-		width: 100%;
-		grid-template-columns: 1fr;
-	}
 
 }

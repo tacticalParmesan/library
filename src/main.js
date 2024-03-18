@@ -60,6 +60,7 @@ function loadUIEventListeners() {
 }
 
 // Card creation process
+// TODO: Break the create car function into smaller ones
 
 function updateLibraryUI(libraryArray) {
 	removeAllCards(uiElements.libraryDisplay);

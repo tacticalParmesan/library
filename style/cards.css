@@ -105,3 +105,10 @@ button.delete-book-btn:hover {
 button.mark-read-btn {
 	width: 6rem;
 }
+
+@media only screen and (max-width: 600px) {
+	.books-container {
+		width: 100%;
+		grid-template-columns: 1fr;
+	}
+}
