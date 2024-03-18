@@ -190,7 +190,7 @@ function changeReadStatus(bookIndex) {
 	}
 
 	readStatus.textContent = myLibrary[bookIndex].status;
-	updateStatisticsPanel()
+	updateStatisticsPanel();
 }
 
 function resetFormValues() {

@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+	font-size: 16px;
+	font-family: "Roboto", "Helvetica", sans-serif;
+	--jet: #353535ff;
+	--caribbean-current: #3c6e71ff;
+	--white: #ffffffff;
+	--platinum: #d9d9d9ff;
+	--indigo-dye: #284b63ff;
+	--burnt-sienna: #ee6c4dff;
+}
+
+* {
+	font-size: inherit;
+	font-family: inherit;
+	list-style: none;
+	text-decoration: none;
+	color: black;
+	box-sizing: border-box;
+}
+
+/* ======================== PAGE LAYOUT ======================== */
+
+body {
+	min-height: 100vh;
+	min-width: 100vw;
+	margin: 0px;
+	background-color: rgba(255, 255, 255, 0.871);
+}
+
+.grid-container {
+	min-height: inherit;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 3.5rem 1fr 3rem;
+	grid-template-areas:
+		"header"
+		"content"
+		"footer";
+}
+
+header {
+	background-color: var(--caribbean-current);
+	grid-area: header;
+}
+
+main {
+	grid-area: content;
+	min-height: 100%;
+}
+
+footer {
+	grid-area: footer;
+}
+
+
+
+/* ======================== CONTENT ======================== */
+
+main {
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+
+main > #new-book-btn {
+	height: 2rem;
+	width: 10rem;
+}
+
+/* ======================== FOOTER ======================== */
+
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+/* ======================== GENERAL BUTTONS STYLE ======================== */
+
+button,
+input[type=submit] {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-weight: 700;
+	border: 0.3rem solid;
+	border-radius: 0.8rem;
+	padding: 0.6rem;
+	cursor: pointer;
+
+	background-color: var(--caribbean-current);
+    border-color: var(--caribbean-current);
+	color: white;
+
+    transition: ease 0.3s;
+}
+
+button:hover{
+    background-color: var(--white);
+	color: var(--caribbean-current);
+}
+
+button#new-book-btn {
+	padding: 1.5rem;
+}
+
+/* ======================== MOBILE ======================== */
+
+@media only screen and (max-width: 600px) {
+	main {
+		width: 100vw;
+	}
+	.books-container {
+		width: 100%;
+		grid-template-columns: 1fr;
+	}
+
+}
