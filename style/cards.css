@@ -14,7 +14,7 @@
 .book-item {
 	border: 1px solid var(--caribbean-current);
 	border-left: 0.6rem solid var(--caribbean-current);
-	border-radius: 1.8rem;
+	border-radius: 1rem;
 	box-shadow: 0px 1px 3px black;
 
 	padding: 1rem;
