@@ -2,7 +2,6 @@ import {
 	myLibrary,
 	changeReadStatus,
 	removeBook,
-	addtoLibrary,
 } from "./main.js";
 
 export const newBookElements = {
@@ -113,7 +112,8 @@ export function createBookCard(bookObject, bookIndex) {
 			changeReadStatus(bookIndex)
 		);
 
-		buttonsContainer.appendChild(deleteBookButton, changeReadStatusButton);
+		buttonsContainer.appendChild(deleteBookButton)
+        buttonsContainer.appendChild(changeReadStatusButton);
         card.appendChild(buttonsContainer)
 	}
 
