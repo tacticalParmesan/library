@@ -49,6 +49,15 @@ span.book-icon {
 	gap: 3px;
 }
 
+.book-data *::before {
+	font-weight: 700;
+	font-style: normal;
+}
+
+.book-data * {
+	font-style: italic;
+}
+
 .book-title::before {
 	content: "Title: ";
 	text-align: start;
@@ -68,7 +77,6 @@ span.book-icon {
 
 .book-status::before {
 	color: initial;
-	font-weight: initial;
 	content: "Read: ";
 }
 
