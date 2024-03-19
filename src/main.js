@@ -16,8 +16,8 @@ function loadEventListeners() {
 	});
 
 	ui.modalUI.closeModalButton.addEventListener("click", () => {
-		uiElements.addBookModal.close();
-		resetFormValues();
+		ui.modalUI.addBookModal.close();
+		ui.resetFormValues();
 	});
 
 	ui.modalUI.addBookForm.addEventListener("submit", (ev) => {
@@ -28,8 +28,7 @@ function loadEventListeners() {
 	});
 
 	ui.newBookElements.iconColor.addEventListener("input", () => {
-		uiElements.bookIconModal.style.color = newBookElements.iconColor.value;
-		console.log(newBookElements.iconColor.value);
+		ui.modalUI.bookIconModal.style.color = ui.newBookElements.iconColor.value;
 	});
 }
 
