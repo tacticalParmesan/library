@@ -76,9 +76,10 @@ export function changeReadStatus(bookIndex) {
 /* ========================================================================== */
 function _displayPlaceholders() {
 	const dune = new Book("Dune", "Frank Herbert", 1965, 865, false, "#b85851");
-
-	const _1984 = new Book("1984", "George Orwell", 1948, 274, true);
-	myLibrary.push(dune, _1984);
+	const _1984 = new Book("1984", "George Orwell", 1948, 274, true, "#000000");
+	const masterAndMargarita = new Book("Master and Margarita", "Mikhail Bulgakov", 1956, 302, true, "#12782d")
+	const hitchikersGuide = new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 1979, 224, false, "#3966ad")
+	myLibrary.push(dune, _1984, masterAndMargarita, hitchikersGuide);
 	ui.updateLibraryUI(myLibrary);
 }
 

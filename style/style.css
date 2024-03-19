@@ -52,6 +52,7 @@ main {
 }
 
 footer {
+	background-color: var(--caribbean-current);
 	grid-area: footer;
 }
 
@@ -78,6 +79,12 @@ footer {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+}
+
+footer p, span {
+	font-size: inherit;
+	font-weight: 700;
+	color: var(--white);
 }
 
 /* ======================== GENERAL BUTTONS STYLE ======================== */
