@@ -34,6 +34,7 @@ function loadEventListeners() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	_displayPlaceholders();
 	loadEventListeners();
 	ui.updateStatisticsPanel();
 });
@@ -74,7 +75,7 @@ export function changeReadStatus(bookIndex) {
 }
 
 /* ========================================================================== */
-function _displayPlaceholdes() {
+function _displayPlaceholders() {
 	const dune = new Book("Dune", "Frank Herbert", 1965, 865, false, "#b85851");
 
 	const _1984 = new Book("1984", "George Orwell", 1948, 274, true);
@@ -82,4 +83,4 @@ function _displayPlaceholdes() {
 	ui.updateLibraryUI(myLibrary);
 }
 
-_displayPlaceholdes();
+

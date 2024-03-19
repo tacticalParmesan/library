@@ -52,60 +52,75 @@ export function updateLibraryUI(libraryArray) {
 }
 
 export function createBookCard(bookObject, bookIndex) {
-	const newBookCard = document.createElement("div");
-	newBookCard.classList.add("book-item");
-	newBookCard.setAttribute("data-index", bookIndex);
 
-	const newBookIcon = document.createElement("span");
-	newBookIcon.classList.add("material-symbols-outlined", "book-icon");
-	newBookIcon.textContent = "book";
-	newBookIcon.style.color = bookObject.iconColor;
-	newBookCard.appendChild(newBookIcon);
-
-	const newBookData = document.createElement("div");
-	newBookData.classList.add("book-data");
-
-	for (const key in bookObject) {
-		const bookProperty = document.createElement("div");
-		bookProperty.classList.add(`book-${String(key)}`);
-
-		if (bookProperty.classList[0] !== "book-iconColor")
-			bookProperty.textContent = bookObject[key];
-
-		if (bookProperty.textContent.length > 20) {
-			bookProperty.style.fontSize = "1rem";
-		}
-
-		if (bookProperty.classList[0] === "book-status") {
-			if (bookProperty.textContent === "Yes") {
-				bookProperty.classList.add("read");
-			} else if (bookProperty.textContent === "To Read") {
-				bookProperty.classList.add("to-read");
-			}
-		}
-
-		newBookData.appendChild(bookProperty);
+	function createNewCard() {
+		const newBookCard = document.createElement("div");
+		newBookCard.classList.add("book-item");
+		newBookCard.setAttribute("data-index", bookIndex);
+		return newBookCard;
 	}
 
-	const buttonsContainer = document.createElement("div");
-	buttonsContainer.classList.add("buttons-container");
+	function createNewIcon(card) {
+		const newBookIcon = document.createElement("span");
+		newBookIcon.classList.add("material-symbols-outlined", "book-icon");
+		newBookIcon.textContent = "book";
+		newBookIcon.style.color = bookObject.iconColor;
+		card.appendChild(newBookIcon);
+	}
 
-	const deleteBookButton = document.createElement("button");
-	deleteBookButton.classList.add("delete-book-btn");
-	deleteBookButton.textContent = "Delete";
-	deleteBookButton.addEventListener("click", () => removeBook(bookIndex));
+	function loadBookData(card) {
+		const newBookData = document.createElement("div");
+		newBookData.classList.add("book-data");
 
-	const changeReadStatusButton = document.createElement("button");
-	changeReadStatusButton.classList.add("mark-read-btn");
-	changeReadStatusButton.textContent = "Read?";
-	changeReadStatusButton.addEventListener("click", () =>
-		changeReadStatus(bookIndex)
-	);
+		for (const key in bookObject) {
+			const bookProperty = document.createElement("div");
+			bookProperty.classList.add(`book-${String(key)}`);
 
-	newBookCard.appendChild(newBookData);
-	buttonsContainer.appendChild(deleteBookButton);
-	buttonsContainer.appendChild(changeReadStatusButton);
-	newBookCard.appendChild(buttonsContainer);
+			if (bookProperty.classList[0] !== "book-iconColor")
+				bookProperty.textContent = bookObject[key];
+
+			if (bookProperty.textContent.length > 20) {
+				bookProperty.style.fontSize = "1rem";
+			}
+
+			if (bookProperty.classList[0] === "book-status") {
+				if (bookProperty.textContent === "Yes") {
+					bookProperty.classList.add("read");
+				} else if (bookProperty.textContent === "To Read") {
+					bookProperty.classList.add("to-read");
+				}
+			}
+
+			newBookData.appendChild(bookProperty);
+		}
+
+		card.appendChild(newBookData);
+	}
+
+	function createButtons(card) {
+		const buttonsContainer = document.createElement("div");
+		buttonsContainer.classList.add("buttons-container");
+
+		const deleteBookButton = document.createElement("button");
+		deleteBookButton.classList.add("delete-book-btn");
+		deleteBookButton.textContent = "Delete";
+		deleteBookButton.addEventListener("click", () => removeBook(bookIndex));
+
+		const changeReadStatusButton = document.createElement("button");
+		changeReadStatusButton.classList.add("mark-read-btn");
+		changeReadStatusButton.textContent = "Read?";
+		changeReadStatusButton.addEventListener("click", () =>
+			changeReadStatus(bookIndex)
+		);
+
+		buttonsContainer.appendChild(deleteBookButton, changeReadStatusButton);
+        card.appendChild(buttonsContainer)
+	}
+
+    const newBookCard = createNewCard();
+    createNewIcon(newBookCard);
+    loadBookData(newBookCard);
+    createButtons(newBookCard)
 	uiMain.libraryDisplay.appendChild(newBookCard);
 }
 
