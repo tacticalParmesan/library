@@ -12,14 +12,14 @@
 /* ================ BOOK CARD =============== */
 
 .book-item {
-	border: 1px solid var(--caribbean-current);
-	border-left: 0.6rem solid var(--caribbean-current);
+	border: 1px solid var(--elements-bgcolor);
+	border-left: 0.6rem solid var(--elements-bgcolor);
 	border-radius: 1rem;
 	box-shadow: 0px 1px 3px black;
 
 	padding: 1rem;
 
-	background-color: white;
+	background-color: var(--cards-bgcolor);
 
 	display: grid;
 	grid-template: 3fr 1fr / 1fr 5fr;

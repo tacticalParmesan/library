@@ -5,11 +5,17 @@
 	font-size: 16px;
 	font-family: "Roboto", "Helvetica", sans-serif;
 	--jet: #353535ff;
-	--caribbean-current: #3c6e71ff;
+	--indigo-dye: #284b63ff;
+	--dark-indigo:  #162936;
+	--new: rgb(61, 114, 149);
 	--white: #ffffffff;
 	--platinum: #d9d9d9ff;
-	--indigo-dye: #284b63ff;
 	--burnt-sienna: #ee6c4dff;
+	--caribbean-current: #3c6e71ff;
+
+	--elements-bgcolor: var(--caribbean-current);
+	--body-bgcolor: var(--white);
+	--cards-bgcolor: var(--white);
 }
 
 * {
@@ -27,7 +33,8 @@ body {
 	min-height: 100vh;
 	min-width: 100vw;
 	margin: 0px;
-	background-color: rgba(255, 255, 255, 0.871);
+	background-color: var(--body-bgcolor);
+	transition: 0.2s ease;
 }
 
 .grid-container {
@@ -42,7 +49,7 @@ body {
 }
 
 header {
-	background-color: var(--caribbean-current);
+	background-color: var(--elements-bgcolor);
 	grid-area: header;
 }
 
@@ -52,7 +59,7 @@ main {
 }
 
 footer {
-	background-color: var(--caribbean-current);
+	background-color: var(--elements-bgcolor);
 	grid-area: footer;
 }
 
@@ -101,8 +108,8 @@ input[type="submit"] {
 	padding: 0.6rem;
 	cursor: pointer;
 
-	background-color: var(--caribbean-current);
-	border-color: var(--caribbean-current);
+	background-color: var(--elements-bgcolor);
+	border-color: var(--elements-bgcolor);
 	color: white;
 
 	transition: ease 0.3s;
@@ -110,9 +117,9 @@ input[type="submit"] {
 
 button:hover {
 	background-color: var(--white);
-	color: var(--caribbean-current);
+	color: var(--elements-bgcolor);
 	.add {
-		color: var(--caribbean-current);
+		color: var(--elements-bgcolor);
 	}
 }
 

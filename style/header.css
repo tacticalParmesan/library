@@ -56,6 +56,10 @@ nav #icons li span {
     padding: 0.5rem;
 }
 
+.dark {
+	color: black;
+}
+
 @media only screen and (max-width: 600px) {
 	header nav {
 		display: none;
