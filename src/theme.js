@@ -42,3 +42,13 @@ export function toggleDarkMode() {
 
 	currentMode = currentMode == "light" ? "dark" : "light";
 }
+
+
+function loadDefaultMode() {
+    if (DEFAULT_MODE !== "light") {
+        currentMode = "light"
+        toggleDarkMode()
+    }
+}
+
+loadDefaultMode()
