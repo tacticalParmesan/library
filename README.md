@@ -10,4 +10,4 @@ The Project asked for a simple application that collects via form informations a
 I added a bit of styling and some extra feature:
 - Statistics Panel: displays data about the total of books, amount/percentage of read books and toal pages read, so you can feel so smart!
 - Mobile support! The app is completely functional (and I dare to say looks good) on mobile also.
-- Switchable dark/light mode!
+- Switchable dark/light mode, on desktop and mobile.

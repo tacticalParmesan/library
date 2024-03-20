@@ -60,9 +60,27 @@ nav #icons li span {
 	color: black;
 }
 
+.dark.mobile{
+	display: none;
+}
+
 @media only screen and (max-width: 600px) {
-	header nav {
+	header nav{
 		display: none;
+	}
+	header h2 {
+		display: flex;
+		align-items: center;
+
+		position: relative;
+		left: 1rem;
+	}
+	.dark.mobile {
+		display: block;
+		position: relative;
+		left: 6rem;
+
+		font-size: 2rem;
 	}
 	header {
 		position: fixed;
