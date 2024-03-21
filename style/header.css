@@ -46,7 +46,7 @@ nav a:hover {
     cursor: pointer;
 }
 
-nav #icons li span {
+nav span {
     color: var(--white);
 }
 

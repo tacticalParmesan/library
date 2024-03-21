@@ -1,5 +1,9 @@
 import * as ui from "./uiupdate.js";
-import { changeThemeButton, toggleDarkMode } from "./theme.js";
+import {
+	desktopChangeThemeButton,
+	mobileChangeThemeButton,
+	toggleDarkMode,
+} from "./theme.js";
 
 export const myLibrary = [];
 
@@ -33,7 +37,8 @@ function loadEventListeners() {
 		ui.modalUI.bookIconModal.style.color = ui.newBookElements.iconColor.value;
 	});
 
-	changeThemeButton.addEventListener("click", toggleDarkMode)
+	desktopChangeThemeButton.addEventListener("click", toggleDarkMode);
+	mobileChangeThemeButton.addEventListener("click", toggleDarkMode);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

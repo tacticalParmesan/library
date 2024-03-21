@@ -1,6 +1,8 @@
 const root = document.querySelector(":root");
 const DEFAULT_MODE = "light";
-export const changeThemeButton = document.querySelector(".dark");
+export const desktopChangeThemeButton = document.querySelector(".dark.desktop");
+export const mobileChangeThemeButton = document.querySelector(".dark.mobile");
+
 
 let currentMode = DEFAULT_MODE;
 
@@ -27,7 +29,9 @@ export function toggleDarkMode() {
 
 		root.style.setProperty("--body-bgcolor", darkModeProperties.bodyBackground);
 		root.style.setProperty("--cards-bgcolor", darkModeProperties.cardsColor)
-        changeThemeButton.style.color = darkModeProperties.themeButtonColor;
+        desktopChangeThemeButton.style.color = darkModeProperties.themeButtonColor;
+        mobileChangeThemeButton.style.color = darkModeProperties.themeButtonColor;
+		
 
 	} else if (currentMode === "dark") {
 		root.style.setProperty(
@@ -37,7 +41,8 @@ export function toggleDarkMode() {
 
 		root.style.setProperty("--body-bgcolor", lightModeProperties.bodyBackground);
 		root.style.setProperty("--cards-bgcolor", lightModeProperties.cardsColor)
-        changeThemeButton.style.color = lightModeProperties.themeButtonColor;
+        desktopChangeThemeButton.style.color = lightModeProperties.themeButtonColor;
+        mobileChangeThemeButton.style.color = lightModeProperties.themeButtonColor;
 	}
 
 	currentMode = currentMode == "light" ? "dark" : "light";
